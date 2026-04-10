@@ -1,4 +1,4 @@
-## Domain Adaptation of Large Language Models: A Comparison between Full Fine-Tuning and LoRA
+## Performance vs. Efficiency in Domain-Specific LLM Adaptation: A Comparative Study of Full Fine-Tuning and LoRA on Real-World Data
 ---
 #### Código fuente que acompaña al artículo presentado en JCC 2026.
 
