@@ -7,6 +7,12 @@ El conjunto de datos utilizado en los experimentos se construyó a partir de los
 Para solicitar acceso al conjunto de datos, comuníquese a: malek.camilo@gmail.com.
 
 ---
+#### Versión de Python
+```
+$ python --version
+Python 3.11.15
+```
+
 #### Librerías utilizadas
 
 | Paquete | Versión |
