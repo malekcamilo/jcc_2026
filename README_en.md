@@ -7,6 +7,12 @@ The dataset is constructed from all documents in the Computer Science domain of 
 To request access to the dataset, please contact: malek.camilo@gmail.com.
 
 ---
+#### Python version
+```
+$ python --version
+Python 3.11.15
+```
+
 #### Used Libraries
 
 | Package | Version |
