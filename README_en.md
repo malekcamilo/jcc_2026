@@ -39,11 +39,11 @@ To avoid Out of Memory (OOM) errors during Full Fine-Tuning (FFT), modify the `S
 training_args = SFTConfig(
     ...
     # Reduced from 8 to 1 to avoid OOM
-    per_device_train_batch_size=1,
+    per_device_train_batch_size=2,
     # Added explicitly to prevent OOM during evaluation
-    per_device_eval_batch_size=1, 
+    per_device_eval_batch_size=2, 
     # Increased to maintain the effective global batch size
-    gradient_accumulation_steps=8, 
+    gradient_accumulation_steps=4, 
     ...
 )
 ```
