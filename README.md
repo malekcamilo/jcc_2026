@@ -39,11 +39,11 @@ En caso de experimentar errores de falta de memoria (Out of Memory - OOM) durant
 training_args = SFTConfig(
     ...
     # Reducido de 8 a 1 para evitar OOM
-    per_device_train_batch_size=1,
+    per_device_train_batch_size=2,
     # Añadido explícitamente para prevenir OOM en evaluación
-    per_device_eval_batch_size=1, 
+    per_device_eval_batch_size=2, 
     # Incrementado para mantener el tamaño de batch efectivo global
-    gradient_accumulation_steps=8, 
+    gradient_accumulation_steps=4, 
     ...
 )
 ```
