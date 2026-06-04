@@ -102,6 +102,7 @@ def main():
     parser.add_argument("--method", type=str, choices=["base", "fft", "lora"], required=True)
     parser.add_argument("--lora_r", type=int, default=8, help="Rango de LoRA (alpha = 2*r)")
     parser.add_argument("--fase", type=str, choices=["train", "eval"], required=True)
+    parser.add_argument("--seed", type=int, default=42, help="Semilla aleatoria para reproducibilidad.")
     args = parser.parse_args()
 
     datasets = load_dataset("json", data_files={
@@ -120,7 +121,7 @@ def main():
     def formatting_prompts_func(example):
         return format_prompt(example, is_training=True, eos_token=tokenizer.eos_token)
 
-    suffix = f"{args.method}_r{args.lora_r}" if args.method == "lora" else args.method
+    suffix = f"{args.method}_r{args.lora_r}_s{args.seed}" if args.method == "lora" else f"{args.method}_s{args.seed}"
 
     if args.fase == "train":
         if args.method == "base":
@@ -149,12 +150,15 @@ def main():
             output_dir=f"./resultados_{suffix}",
             learning_rate=tasa_aprendizaje,
             per_device_train_batch_size=8,
+            per_device_eval_batch_size=8,
             gradient_accumulation_steps=1,
             gradient_checkpointing=True,
-            num_train_epochs=3,
+            seed=args.seed,
+            num_train_epochs=5,
             bf16=True,
-            save_strategy="epoch",
+            save_strategy="no",
             logging_strategy="epoch",
+            eval_strategy="epoch",
             max_length=512
         )
 
@@ -195,6 +199,7 @@ def main():
         resultados_train = {
             "method": args.method,
             "lora_r": args.lora_r if args.method == "lora" else None,
+            "seed": args.seed,
             "train_time_hours": round(train_time, 2),
             "memory_gb": round(memory_gb, 2)
         }
@@ -237,6 +242,7 @@ def main():
         resultados_eval = {
             "method": args.method,
             "lora_r": args.lora_r if args.method == "lora" else None,
+            "seed": args.seed,
             "accuracy": round(acc, 4),
             "macro_f1": round(macro_f1, 4),
             "em": round(em, 4)

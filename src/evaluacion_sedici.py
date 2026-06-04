@@ -118,6 +118,7 @@ def main():
     parser.add_argument("--model_path", type=str, required=True)
     parser.add_argument("--method", type=str, choices=["base", "fft", "lora"], required=True)
     parser.add_argument("--lora_r", type=int, default=8, help="Rango de LoRA (alpha = 2*r)")
+    parser.add_argument("--seed", type=int, default=42, help="Semilla aleatoria (para ubicar pesos)")
     args = parser.parse_args()
 
     datasets = load_dataset("json", data_files={
@@ -131,7 +132,7 @@ def main():
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    suffix = f"{args.method}_r{args.lora_r}" if args.method == "lora" else args.method
+    suffix = f"{args.method}_r{args.lora_r}_s{args.seed}" if args.method == "lora" else f"{args.method}_s{args.seed}"
 
     if args.method == "base":
         print("Evaluando modelo base sin fine-tuning...")
@@ -187,7 +188,8 @@ def main():
         "config": {
             "fase": "eval",
             "method": args.method,
-            "lora_r": args.lora_r if args.method == "lora" else None
+            "lora_r": args.lora_r if args.method == "lora" else None,
+            "seed": args.seed
         },
         "metrics": {
             "global": {
