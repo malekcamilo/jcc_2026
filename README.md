@@ -5,6 +5,14 @@
 El conjunto de datos utilizado en los experimentos se construyó a partir de los documentos pertenecientes al dominio de Ciencias de la Computación del repositorio institucional SEDICI, abarcando un total de 19.974 registros con sus respectivos metadatos. Cada instancia consta del título y el resumen del documento. El tipo de documento se empleó como variable objetivo para la tarea de clasificación supervisada. 
 
 ---
+#### Semillas utilizadas
+Semillas utilizadas para garantinzar la reproducibilidad de los experimentos
+```
+42
+731558364
+3688191069
+```
+---
 #### Versión de Python
 ```
 $ python --version
