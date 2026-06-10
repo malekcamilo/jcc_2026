@@ -6,7 +6,7 @@ El conjunto de datos utilizado en los experimentos se construyó a partir de los
 
 ---
 #### Semillas utilizadas
-Semillas utilizadas para garantinzar la reproducibilidad de los experimentos
+Semillas utilizadas para garantinzar la reproducibilidad de los experimentos.
 ```
 42
 731558364
