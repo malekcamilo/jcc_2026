@@ -3,7 +3,14 @@
 #### Source code accompanying the paper presented at JCC 2026
 
 The dataset is constructed from all documents in the Computer Science domain of the SEDICI institutional repository, comprising a total of 19,974 records with associated metadata. Each instance is composed of the document title and abstract, while the document type is used as the target variable for the classification task.
-
+---
+#### Seeds used
+Seeds used to ensure the reproducibility of the experiments.
+```
+42
+731558364
+3688191069
+``` 
 ---
 #### Python version
 ```
